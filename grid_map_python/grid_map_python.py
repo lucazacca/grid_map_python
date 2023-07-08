@@ -23,7 +23,7 @@ class GridMap:
         self.center_x = center_x
         self.center_y = center_y
 
-        self.top_left_x = self.center_x -self.width / 2.0 * self.resolution
+        self.top_left_x = self.center_x - self.width / 2.0 * self.resolution
         self.top_left_y = self.center_y + self.height / 2.0 * self.resolution
 
         self.ndata = self.width * self.height
@@ -49,10 +49,8 @@ class GridMap:
         return self.data[cell_index]
     
     def get_xy_pos_from_xy_index(self, x_index, y_index):
-        top_left_vector_connect_x = x_index + self.resolution/2
-        top_left_vector_connect_y = -(y_index + self.resolution/2)
-        x_pos = self.top_left_x + top_left_vector_connect_x
-        y_pos = self.top_left_y + top_left_vector_connect_y
+        x_pos = self.top_left_x + self.resolution/2 + x_index*self.resolution
+        y_pos = self.top_left_y - (self.resolution/2 + y_index*self.resolution)
         return (x_pos, y_pos)
     
     def set_cell_visited(self, cell_index):
